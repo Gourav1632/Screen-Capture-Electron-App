@@ -1,23 +1,27 @@
-const { ipcRenderer } = require('electron');
-
+// render.js
 const intervalInput = document.getElementById('interval');
 const formatSelect = document.getElementById('format');
 const folderInput = document.getElementById('folder');
 const selectFolderBtn = document.getElementById('selectFolderBtn');
 const startBtn = document.getElementById('startBtn');
 const stopBtn = document.getElementById('stopBtn');
-const status = document.getElementById('status');
 
 let folderPath = '';
 
+// Select Folder Button
 selectFolderBtn.addEventListener('click', async () => {
-  const selectedPath = await ipcRenderer.invoke('select-folder');
-  if (selectedPath) {
-    folderPath = selectedPath;
-    folderInput.value = folderPath;
+  try {
+    const selectedPath = await window.electronAPI.selectFolder(); 
+    if (selectedPath) {
+      folderPath = selectedPath;
+      folderInput.value = folderPath;
+    }
+  } catch (error) {
+    console.error('Failed to select folder:', error);
   }
 });
 
+// Start Capture Button
 startBtn.addEventListener('click', () => {
   const interval = parseInt(intervalInput.value);
   const format = formatSelect.value;
@@ -32,15 +36,14 @@ startBtn.addEventListener('click', () => {
     return;
   }
 
-  ipcRenderer.send('start-capture', { interval, format, folderPath });
-  status.textContent = `Capturing screenshots every ${interval} seconds in ${format.toUpperCase()} format...`;
+  window.electronAPI.startCapture({ interval, format, folderPath });  // Use electronAPI to send start capture
   startBtn.disabled = true;
   stopBtn.disabled = false;
 });
 
+// Stop Capture Button
 stopBtn.addEventListener('click', () => {
-  ipcRenderer.send('stop-capture');
-  status.textContent = 'Capture stopped.';
+  window.electronAPI.stopCapture();  // Use electronAPI to stop capture
   startBtn.disabled = false;
   stopBtn.disabled = true;
 });

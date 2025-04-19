@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Countdown</title>
+  <style>
+    html, body {
+      margin: 0;
+      background: rgba(0, 0, 0, 0.5); /* transparent dark overlay */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    #count {
+      font-size: 10rem;
+      color: white;
+      font-weight: bold;
+      font-family: Arial, sans-serif;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="count">3</div>
+
+  <script>
+    const countElem = document.getElementById('count');
+    let count = 3;
+
+    const countdown = setInterval(() => {
+      count--;
+      if (count <= 0) {
+        clearInterval(countdown);
+        window.close(); // close the countdown window
+      } else {
+        countElem.textContent = count;
+      }
+    }, 1000);
+  </script>
+</body>
+</html>

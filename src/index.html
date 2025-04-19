@@ -1,48 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Screenshot Capture App</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-gray-100 text-gray-900 min-h-screen flex items-center justify-center">
-    <div class="flex flex-col bg-white shadow-lg rounded-lg p-8 w-96">
-      <div class="flex justify-center items-center mb-6">
-        <h1 class="text-2xl font-semibold text-gray-800">Screen Capture</h1>
-      </div>
-      
-      <div class="mb-6">
-        <h2 class="text-lg font-semibold text-gray-700 mb-3">Capture Settings</h2>
-
-        <!-- Time Interval -->
-        <div class="mb-4 flex">
-          <label for="interval" class=" text-gray-600 mb-2 w-full">Time Interval (seconds)</label>
-          <input id="interval" placeholder="5" type="number" class=" p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500" />
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Screenshot Capture App</title>
+      <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class="bg-gray-100 text-gray-900 min-h-screen flex items-center justify-center">
+      <div class="flex flex-col bg-white shadow-lg rounded-lg p-8 w-96">
+        <div class="flex justify-center items-center mb-6">
+          <h1 class="text-2xl font-semibold text-gray-800">Screen Capture</h1>
         </div>
-
-        <!-- Destination -->
-        <div class="mb-4">
-          <label for="destination" class="block text-gray-600 mb-2">Destination</label>
-          <input id="destination" placeholder="Select Folder" type="text" class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500" />
-          <button>Choose</button>
-        </div>
-
-        <!-- Image Format -->
+        
         <div class="mb-6">
-          <label for="format" class="block text-gray-600 mb-2">Image Format</label>
-          <select id="format" class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500">
-            <option value="png">PNG</option>
-            <option value="jpeg">JPEG</option>
-          </select>
+          <h2 class="text-lg font-semibold text-gray-700 mb-3">Capture Settings</h2>
+
+          <!-- Time Interval -->
+          <div class="mb-4 flex">
+            <label for="interval" class=" text-gray-600 mb-2 w-full">Time Interval (seconds)</label>
+            <input id="interval" placeholder="5" type="number" class=" p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500" />
+          </div>
+
+          <!-- Destination -->
+          <div class="mb-4">
+            <label for="folder" class="block text-gray-600 mb-2">Destination</label>
+            <input id="folder" placeholder="Select Folder" type="text" class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500" />
+            <button id="selectFolderBtn">Choose</button>
+          </div>
+
+          <!-- Image Format -->
+          <div class="mb-6">
+            <label for="format" class="block text-gray-600 mb-2">Image Format</label>
+            <select id="format" class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500">
+              <option value="png">PNG</option>
+              <option value="jpeg">JPEG</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Recents Section -->
+        <div>
+          Recents
+        </div>
+        <div class="container flex justify-between">
+            <button class="bg-green-100" id="startBtn">Start</button>
+            <button class="bg-red-500 " id="stopBtn">Stop</button>
         </div>
       </div>
-
-      <!-- Recents Section -->
-      <div>
-        Recents
-      </div>
-    </div>
-  </body>
-</html>
+      <script type="module" defer src="./render.js"></script>
+    </body>
+  </html>
