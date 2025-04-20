@@ -5,6 +5,7 @@ import fs from 'fs';
 import screenshot from 'screenshot-desktop';
 import { dialog } from 'electron';
 
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -93,8 +94,18 @@ ipcMain.on('start-capture', async (event, { interval, format, folderPath }) => {
 
   captureInterval = setInterval(async () => {
     const screenshotPath = path.join(screenshotsDir, `screenshot_${Date.now()}.${format}`);
-    const img = await screenshot({ format });
-    fs.writeFileSync(screenshotPath, img);
+    
+    try {
+      const img = await screenshot({ format });
+      fs.writeFileSync(screenshotPath, img); // save the screenshot
+      
+      // Send the screenshot path to the renderer process after saving
+      if (mainWindow && mainWindow.webContents) {
+        mainWindow.webContents.send('screenshot-taken', `file://${screenshotPath}`);
+      }
+    } catch (error) {
+      console.error('Error capturing screenshot:', error);
+    }
   }, interval * 1000);
 });
 
