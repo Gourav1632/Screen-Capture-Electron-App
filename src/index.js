@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 import fs from 'fs';
 import screenshot from 'screenshot-desktop';
 import { dialog } from 'electron';
-
+import AutoLaunch from 'auto-launch';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -62,8 +62,29 @@ const createCountdownWindow = ()=>{
   });
 }
 
-app.whenReady().then(createWindow);
+app.whenReady().then(() => {
+  createWindow();
 
+  // Set up Auto Launch for Windows/Mac/Linux
+  const myAppAutoLauncher = new AutoLaunch({
+    name: 'screen-capture', // Name of your app
+    path: app.getPath('exe'), // Path to your app's executable
+  });
+
+  // Enable auto-launch
+  myAppAutoLauncher.enable();
+
+  // Optionally, you can check if the app is already set to auto-launch
+  myAppAutoLauncher.isEnabled()
+    .then((isEnabled) => {
+      if (!isEnabled) {
+        myAppAutoLauncher.enable();
+      }
+    })
+    .catch((err) => {
+      console.error('Error enabling auto-launch:', err);
+    });
+});
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
 });
