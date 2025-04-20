@@ -1,8 +1,8 @@
 version: 1.0.0
 files:
   - url: ScreenCapture-Setup-1.0.0.exe
-    sha512: FwwoYSIXTwSzbyUS7SIQeU4AxYo6c/Ic85ToRH3Jl4IhAGlJ301NYdPrzDuSJr98bfR3//lVAwx0qnb/KNpLHA==
-    size: 85510888
+    sha512: DkeaKAvNKGmmI2mUq+PqVALc4UEQQHsCyTTO2eZw4mRTZvvxMpk+3rp8p0X4RDeCRX0BTOGrFFJCnakRfoPYFA==
+    size: 85511096
 path: ScreenCapture-Setup-1.0.0.exe
-sha512: FwwoYSIXTwSzbyUS7SIQeU4AxYo6c/Ic85ToRH3Jl4IhAGlJ301NYdPrzDuSJr98bfR3//lVAwx0qnb/KNpLHA==
-releaseDate: '2025-04-20T07:45:18.755Z'
+sha512: DkeaKAvNKGmmI2mUq+PqVALc4UEQQHsCyTTO2eZw4mRTZvvxMpk+3rp8p0X4RDeCRX0BTOGrFFJCnakRfoPYFA==
+releaseDate: '2025-04-20T08:08:00.634Z'

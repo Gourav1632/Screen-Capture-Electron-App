@@ -1,3 +1,4 @@
+// DOM elements
 const intervalInput = document.getElementById('interval');
 const folderInput = document.getElementById('folder');
 const selectFolderBtn = document.getElementById('selectFolderBtn');
@@ -14,13 +15,14 @@ const storedScreenshots = [];
 let currentPage = 1;
 const screenshotsPerPage = 12;
 
-// Image format switch
+// Switch image format to PNG
 pngRadio.addEventListener("change", () => {
   toggleBg.style.left = "0.25rem";
   labelPng.classList.add("text-white");
   labelJpeg.classList.remove("text-white");
 });
 
+// Switch image format to JPEG
 jpegRadio.addEventListener("change", () => {
   toggleBg.style.left = "calc(50% + 0.25rem)";
   labelJpeg.classList.add("text-white");
@@ -40,7 +42,7 @@ selectFolderBtn.addEventListener('click', async () => {
   }
 });
 
-// Start capture
+// Start capturing screenshots
 startBtn.addEventListener('click', () => {
   const interval = parseInt(intervalInput.value);
   const format = pngRadio.checked ? 'png' : 'jpeg';
@@ -61,7 +63,7 @@ startBtn.addEventListener('click', () => {
   stopBtn.disabled = false;
 });
 
-// Stop capture
+// Stop capturing screenshots
 stopBtn.addEventListener('click', () => {
   window.electronAPI.stopCapture();
   startBtn.disabled = false;
@@ -69,19 +71,20 @@ stopBtn.addEventListener('click', () => {
   stopBtn.disabled = true;
 });
 
-// Open/close modal
+// Open screenshot preview modal
 function openPreview(src) {
   document.getElementById('previewImage').src = src;
   document.getElementById('previewModal').classList.remove('hidden');
 }
 
+// Close screenshot preview modal
 function closePreview() {
   document.getElementById('previewModal').classList.add('hidden');
 }
 
 document.getElementById('closePreview').addEventListener('click', closePreview);
 
-// Render grid
+// Render screenshots in grid and handle pagination
 function renderScreenshots(screenshots) {
   const grid = document.getElementById('screenshotGrid');
   const noShot = document.getElementById('noScreenshots');
@@ -140,6 +143,6 @@ document.getElementById('nextPage').addEventListener('click', () => {
 
 // Handle screenshot received from backend
 window.electronAPI.onScreenshotTaken((event, path) => {
-  storedScreenshots.unshift(path); // add to beginning
+  storedScreenshots.unshift(path); // Add new screenshot to the start
   renderScreenshots(storedScreenshots);
 });
