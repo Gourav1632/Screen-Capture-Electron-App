@@ -7,9 +7,7 @@ A simple desktop application for capturing screenshots at regular intervals. The
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Building for Desktop](#building-for-desktop)
-- [Contributing](#contributing)
-- [License](#license)
+- [Building for Desktop](#build-for-desktop)
 
 ## Screenshots
 
