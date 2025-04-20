@@ -38,8 +38,8 @@ Here are some screenshots of the application in action:
 ### Steps
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Gourav1632/Screen-Capture-App.git
-   cd Screen-Capture-App
+   git clone [https://github.com/Gourav1632/Screen-Capture-Electron-App.git](https://github.com/Gourav1632/Screen-Capture-Electron-App.git)
+   cd Screen-Capture-Electron-App
 2. Install dependencies using `npm install`
 3. Run the application: `npm start`
 
